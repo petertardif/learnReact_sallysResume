@@ -1,19 +1,40 @@
-body {
-  padding: 30px;
-  font-family: Georgia, "Times New Roman",
-        Times, serif;
+* {
+  box-sizing: border-box;
 }
 
-header {
-  text-align: center;
+body {
+  font-family: Georgia, "Times New Roman",
+        Times, serif;
+  background-color: rgb(255, 248, 248);
+}
+
+header, address {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  border-radius: 3px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.2);
 }
 
-.indt {
-  padding-left: 50px;
+ul > li {
+  list-style: none;
+}
+
+.container {
+  max-width: 65%;
+  margin: 0 auto;
+}
+
+
+footer {
+  display: block;
+  background-color: lightgray;
+  bottom: 0px;
+  width: 100%;
+  padding-bottom: 15px;
 }
