@@ -22,22 +22,24 @@
 
   <script type="text/babel">
     function App(props) {
+      console.log(props)
       return (
-        <header role="banner">
+      <div>  
+      <header role="banner">
             <h1>{props.resumeTitle}</h1>
         </header>
         <main role="main">
             <div>
-                <img src={props.imgHeadshot} alt={props.imgHeadshot} />
+                <img src={props.imgHeadshot} alt={props.imgAltText} />
             </div>
           <address> 
               <header>
                 <h2>Contact Information</h2>
               </header>
             <ul>
-                <li>{contactInfo.props.name}</li>
-                <li><a href={contactInfo.props.emailHref}>{contactInfo.props.email}</a></li>
-                <li>{contactInfo.props.phoneNumber}</li>
+                <li>{props.contactInfo.name}</li>
+                <li><a href={props.contactInfo.emailHref}>{props.contactInfo.email}</a></li>
+                <li>{props.contactInfo.phoneNumber}</li>
             </ul>
           </address>
           <section role="region">
@@ -45,15 +47,15 @@
                 <h2>Employment History</h2>
               </header>
                 <div className="container">
-                  <h3>Sitwell Enterprises</h3>
-                  <h4><em>Vice President of Sales</em>: 2009 - Present</h4>
-                      <p>Bacon ipsum dolor amet boudin picanha prosciutto drumstick. Pastrami leberkas pancetta, beef ribs ball tip chicken flank short ribs fatback cow porchetta. Flank alcatra pork chop pastrami, cupim ground round bresaola capicola tail strip steak corned beef landjaeger turkey ham hamburger. Rump corned beef pork belly picanha sirloin tenderloin. Strip steak jerky tail rump, shoulder meatball porchetta tri-tip chicken burgdoggen andouille ham meatloaf ham hock prosciutto. Porchetta rump tri-tip beef ribs. Filet mignon jowl cupim spare ribs beef ribs biltong chuck sausage.
+                  <h3>{props.employmentHistory[0].companyName}</h3>
+                  <h4><em>{props.employmentHistory[0].jobTitle}</em>: {props.employmentHistory[0].datesEmployed}</h4>
+                      <p>{props.employmentHistory[0].workDescription}
                       </p>
                 </div>
                 <div className="container">
-                  <h3>Bluth Company</h3>
-                  <h4><em>Assistant Vice President</em>: 2005 - s2009</h4>
-                      <p>Venison bacon doner tail beef cupim pork loin porchetta meatloaf brisket spare ribs filet mignon ham hock pastrami. Pancetta ham hock flank venison brisket pork loin strip steak chuck jowl short loin tenderloin chicken andouille porchetta boudin. Cupim capicola sirloin, beef short loin leberkas pork loin chicken jerky andouille boudin chuck. Shoulder cupim salami capicola shankle landjaeger brisket tongue turkey sausage spare ribs pastrami. Corned beef chuck andouille sausage tenderloin kevin ribeye swine kielbasa brisket porchetta. Jowl pig cow alcatra ball tip, filet mignon salami meatloaf.
+                    <h3>{props.employmentHistory[1].companyName}</h3>
+                  <h4><em>{props.employmentHistory[1].jobTitle}</em>: {props.employmentHistory[1].datesEmployed}</h4>
+                      <p>{props.employmentHistory[1].workDescription}
                       </p>
                 </div>
           </section>
@@ -64,8 +66,8 @@
               </header>
               <h3>{props.college.name} - {props.college.graduated}</h3>
               <ul>
-                  <li>Bachelor's in Commercial Real Estate</li>
-                  <li>Graduated summa cum laude with a emphasis in neither being seen nor heard.</li>
+                  <li>{props.college.details[0]}</li>
+                  <li>{props.college.details[1]}</li>
               </ul>  
             </div>
           </section>
@@ -75,52 +77,53 @@
                 <h3>Contact Information</h3>
             </header>
                 <ul>
-                    <li><a href={contactInfo.props.emailHref}>Email Me</a></li>
-                    <li>{contactInfo.props.phoneNumber}</li>
+                    <li><a href={props.contactInfo.emailHref}>Email Me</a></li>
+                    <li>{props.contactInfo.phoneNumber}</li>
                 </ul>
         </footer>
+        </div>
       );
     }
 
-ReactDOM.render(
-  <App className='my-class'
-    resumeTitle = "Sally Sitwell's Resume"
-    imgHeadshot = 'src="https://m.media-amazon.com/images/M/MV5BMTg2ODAwODE5Nl5BMl5BanBnXkFtZTcwMjA4NjYyMw@@._V1_UX214_CR0,0,214,317_AL_.jpg"'
-    imgAltText = 'alt="picture of Sally Sitwell.  Young professionally dressed woman with long blonde hair in a black top."'
-    contactInfo = {
-                    { name: "Sally Sitwell", 
-                      email: "sitwell.s@arresteddevelopment.com", 
-                      emailHref: "mailto:sitwell.s@arresteddevelopment.com"
-                      phoneNumber: 555-303-7160
+    ReactDOM.render(
+      <App 
+        resumeTitle = "Sally Sitwell's Resume"
+        imgHeadshot = "https://m.media-amazon.com/images/M/MV5BMTg2ODAwODE5Nl5BMl5BanBnXkFtZTcwMjA4NjYyMw@@._V1_UX214_CR0,0,214,317_AL_.jpg"
+        imgAltText = "picture of Sally Sitwell.  Young professionally dressed woman with long blonde hair in a black top."
+        contactInfo = {
+                        { name: "Sally Sitwell", 
+                          email: "sitwell.s@arresteddevelopment.com", 
+                          emailHref: "mailto:sitwell.s@arresteddevelopment.com",
+                          phoneNumber: 555-303-7160
+                        }
+                      }
+        employmentHistory = 
+          {
+            [
+              {
+                companyName: "Sitwell Enterprises",
+                jobTitle: "Vice President of Sales",
+                datesEmployed: "2009 - Present",
+                workDescription: "Bacon ipsum dolor amet boudin picanha prosciutto drumstick. Pastrami leberkas pancetta, beef ribs ball tip chicken flank short ribs fatback cow porchetta. Flank alcatra pork chop pastrami, cupim ground round bresaola capicola tail strip steak corned beef landjaeger turkey ham hamburger. Rump corned beef pork belly picanha sirloin tenderloin. Strip steak jerky tail rump, shoulder meatball porchetta tri-tip chicken burgdoggen andouille ham meatloaf ham hock prosciutto. Porchetta rump tri-tip beef ribs. Filet mignon jowl cupim spare ribs beef ribs biltong chuck sausage."
+              },
+              {
+                companyName: "Bluth Company",
+                jobTitle: "Assistant Vice President",
+                datesEmployed: "2005 - 2009",
+                workDescription: "Venison bacon doner tail beef cupim pork loin porchetta meatloaf brisket spare ribs filet mignon ham hock pastrami. Pancetta ham hock flank venison brisket pork loin strip steak chuck jowl short loin tenderloin chicken andouille porchetta boudin. Cupim capicola sirloin, beef short loin leberkas pork loin chicken jerky andouille boudin chuck. Shoulder cupim salami capicola shankle landjaeger brisket tongue turkey sausage spare ribs pastrami. Corned beef chuck andouille sausage tenderloin kevin ribeye swine kielbasa brisket porchetta. Jowl pig cow alcatra ball tip, filet mignon salami meatloaf."
+              }
+            ]
+          }
+        college = {
+                    {
+                      name: "Milford School",
+                      graduated: 2005,
+                      details: ["Bachelor's in Commercial Real Estate","Graduated summa cum laude with a emphasis in neither being seen nor heard."]
                     }
                   }
-    employmentHistory = 
-      {
-        [
-          {
-            companyName: "Sitwell Enterprises",
-            jobTitle: "Vice President of Sales",
-            datesEmployed: "2009 - Present",
-            workDescription: "Bacon ipsum dolor amet boudin picanha prosciutto drumstick. Pastrami leberkas pancetta, beef ribs ball tip chicken flank short ribs fatback cow porchetta. Flank alcatra pork chop pastrami, cupim ground round bresaola capicola tail strip steak corned beef landjaeger turkey ham hamburger. Rump corned beef pork belly picanha sirloin tenderloin. Strip steak jerky tail rump, shoulder meatball porchetta tri-tip chicken burgdoggen andouille ham meatloaf ham hock prosciutto. Porchetta rump tri-tip beef ribs. Filet mignon jowl cupim spare ribs beef ribs biltong chuck sausage."
-          },
-          {
-            companyName: "Bluth Company",
-            jobTitle: "Assistant Vice President",
-            datesEmployed: "2005 - 2009",
-            workDescription: "Venison bacon doner tail beef cupim pork loin porchetta meatloaf brisket spare ribs filet mignon ham hock pastrami. Pancetta ham hock flank venison brisket pork loin strip steak chuck jowl short loin tenderloin chicken andouille porchetta boudin. Cupim capicola sirloin, beef short loin leberkas pork loin chicken jerky andouille boudin chuck. Shoulder cupim salami capicola shankle landjaeger brisket tongue turkey sausage spare ribs pastrami. Corned beef chuck andouille sausage tenderloin kevin ribeye swine kielbasa brisket porchetta. Jowl pig cow alcatra ball tip, filet mignon salami meatloaf."
-          }
-        ]
-      }
-    college = {
-                {
-                  name: "Milford School",
-                  graduated: 2005,
-                  details: ["Bachelor's in Commercial Real Estate","Graduated summa cum laude with a emphasis in neither being seen nor heard."]
-                }
-              }
-    />,
-  document.querySelector('#root')
-)
+        />,
+      document.querySelector('#root')
+    );
   </script>
 </body>
 </html>
